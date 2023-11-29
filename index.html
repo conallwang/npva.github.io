@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neural Point-based Volumetric Avatar: Surface-guided Neural Volumetric
+    Points for Efficient and High-quality Head Avatar</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="./static/js/dics.original.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', domReady);
+
+        function domReady() {
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[0],
+                textPosition: 'top'
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[1],
+                textPosition: 'top'
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[2],
+                textPosition: 'top'
+            });
+
+            new Dics({
+              container: document.querySelectorAll('.b-dics')[3],
+              textPosition: 'top'
+          });
+
+          new Dics({
+              container: document.querySelectorAll('.b-dics')[4],
+              textPosition: 'top'
+          });
+        }
+  </script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns ≈">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Neural Point-based Volumetric Avatar: Surface-guided Neural Volumetric
+            Points for Efficient and High-quality Head Avatar</h1>
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">
+              <p> Anonymous </p>  
+            </span>
+          </div>
+
+          <div class="is-size-4 publication-authors">
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2307.05000"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+                <!-- </a> -->
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/facebookresearch/multiface"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" src="./static/images/teaser_v5.png" height="100%">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">NPVA</span> achieves high-fidelity facial
+        animations (images and depth maps) while maintaining efficiency comparable to mesh-based methods.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this paper, we propose Neural Point-based Volumetric Avatar (NPVA), a method that adopts the <b>neural point representation</b> as well as <b>the neural volume rendering process</b> and discards the predefined connectivity and hard correspondence imposed by mesh-based approaches.
+          </p>
+          <p>
+            Specifically, the neural points are strategically constrained around the surface of the target expression via a high-resolution UV displacement map, achieving increased modeling capacity and more accurate control. We introduce three technical innovations to improve the rendering and training efficiency: a patch-wise depth-guided (shading point) sampling strategy, a lightweight radiance decoding process, and a Grid-Error-Patch (GEP) ray sampling strategy during training.
+          </p>
+          <p>
+            Experiments conducted on the Multiface dataset demonstrate the effectiveness of our designs, outperforming previous state-of-the-art methods, especially in handling challenging facial regions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Comparisons with state-of-the-art methods</h2>
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <div class="b-dics" style="width: 100%" >
+            <img src="./static/images/0426_035869_pred.png" alt="NPVA Rendering">
+            <img src="./static/images/MVP_0426_SEN_why_charge.png" alt="MVP Rendering">
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div class="b-dics" style="width: 100%;" >
+            <img src="./static/images/0426_035869_pred.png" alt="NPVA Rendering">
+            <img src="./static/images/DAM_0426_SEN_why_charge.png" alt="DAM Rendering">
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div class="b-dics" style="width: 100%;" >
+            <img src="./static/images/0426_035869_pred.png" alt="NPVA Rendering">
+            <img src="./static/images/PiCA_0426_SEN_why_charge.png" alt="PiCA Rendering">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <div class="b-dics" style="width: 67%; margin:auto;" >
+            <img src="./static/images/0426_035869_pred.png" alt="NPVA Rendering">
+            <img src="./static/images/0426_035869_gt.png" alt="Ground Truth">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <div class="content">
+          <div class="b-dics" style="width: 67%; margin:auto;" >
+            <img src="./static/images/0426_035869_pred.png" alt="NPVA Rendering">
+            <img src="./static/images/0426_035869_geo.png" alt="NPVA Geometry">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Talking Head (with audio)</h2>
+          <p>
+            The talking head rendered using our NPVA model. 
+            The left part is the input (driving) mesh, the middle part is our rendering result, and the right part is the detailed depth map generated by the volume rendering.
+          </p>
+
+          <h2 class="title is-5">The first demo</h2>
+          <video id="NPA_0426_forward" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_speaking_forward_with_audio.mp4"
+                    type="video/mp4">
+          </video>
+
+          <video id="NPA_0426_left2right" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_speaking_left2right_with_audio.mp4"
+                    type="video/mp4">
+          </video>
+
+          <video id="NPA_0426_up2down" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_speaking_up2down_with_audio.mp4"
+                    type="video/mp4">
+          </video>
+
+          <h2 class="title is-5">The second demo</h2>
+          <video id="NPA_0426_forward1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_speaking2_forward_with_audio.mp4"
+                    type="video/mp4">
+          </video>
+
+          <video id="NPA_0426_left2right1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_speaking2_left2right_with_audio.mp4"
+                    type="video/mp4">
+          </video>
+
+          <video id="NPA_0426_up2down1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_speaking2_up2down_with_audio.mp4"
+                    type="video/mp4">
+          </video>
+          
+
+          <h2 class="title is-3">Neutral Expression</h2>
+          
+          <p>
+            A neutral expression rendered by our approach.
+          </p>
+          <video id="NPA_0426_left2right" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_neutral_left2right.mp4"
+                    type="video/mp4">
+          </video>
+
+          <video id="NPA_0426_up2down" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_neutral_up2down.mp4"
+                    type="video/mp4">
+          </video>
+
+          <p>
+            A neutral expression rendered by NPVA(ours), DAM, PiCA and MVP.
+          </p>
+          <video id="compare" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Neural_Comp_left2right.mp4"
+                    type="video/mp4">
+          </video>
+          
+
+          <h2 class="title is-3">Normal Expression</h2>
+
+          <p>
+            A normal expression rendered by our approach.
+          </p>
+          <video id="NPA_0426_left2right" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_normal_left2right.mp4"
+                    type="video/mp4">
+          </video>
+
+          <video id="NPA_0426_up2down" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_normal_up2down.mp4"
+                    type="video/mp4">
+          </video>
+
+          <p>
+            A normal expression rendered by NPVA(ours), DAM, PiCA and MVP.
+          </p>
+          <video id="compare" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Normal_Comp_left2right.mp4"
+                    type="video/mp4">
+          </video>
+
+          
+          <h2 class="title is-3">Extreme Expression</h2>
+          <p>
+            An extreme expression rendered by our approach.
+          </p>
+          <video id="NPA_0426_left2right" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_extreme_left2right.mp4"
+                    type="video/mp4">
+          </video>
+
+          <video id="NPA_0426_up2down" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NPA_0426_extreme_up2down.mp4"
+                    type="video/mp4">
+          </video>
+
+          <p>
+            An extreme expression rendered by NPVA(ours), DAM, PiCA and MVP.
+          </p>
+          <video id="compare" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Extreme_Comp_left2right.mp4"
+                    type="video/mp4">
+          </video>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Concurrent Work. -->
+<div class="columns is-centered">
+  <div class="column is-full-width">
+    <h2 class="title is-3">Related Links</h2>
+
+    
+  </div>
+</div>
+<!--/ Concurrent Work. -->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Cite</h2>
+    <pre><code>@article{DBLP:journals/corr/abs-2307-05000,
+      author       = {Cong Wang and
+                      Di Kang and
+                      Yan{-}Pei Cao and
+                      Linchao Bao and
+                      Ying Shan and
+                      Song{-}Hai Zhang},
+      title        = {Neural Point-based Volumetric Avatar: Surface-guided Neural Points
+                      for Efficient and Photorealistic Volumetric Head Avatar},
+      journal      = {CoRR},
+      volume       = {abs/2307.05000},
+      year         = {2023}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/abs/2307.05000">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website template was borrowed from <a href="https://github.com/nerfies/nerfies.github.io/tree/main">Nerfies</a>. If you have any questions about the paper, please feel free to contact us. 
+          </p>
+
+          <p>
+            Email: wangcong20@mails.tsinghua.edu.cn
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
